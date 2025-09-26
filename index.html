@@ -1,1102 +1,696 @@
-<html>
-
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Behbudiy Academy — Batch 5</title>
-	<style>
-		/* cspell:disable-file */
-		/* webkit printing magic: print all background colors */
-		html {
-			-webkit-print-color-adjust: exact;
-		}
-
-		* {
-			box-sizing: border-box;
-			-webkit-print-color-adjust: exact;
-		}
-
-		html,
-		body {
-			margin: 0;
-			padding: 0;
-		}
-
-		@media only screen {
-			body {
-				margin: 2em auto;
-				max-width: 900px;
-				color: rgb(55, 53, 47);
-			}
-		}
-
-		body {
-			line-height: 1.5;
-			white-space: pre-wrap;
-		}
-
-		a,
-		a.visited {
-			color: inherit;
-			text-decoration: underline;
-		}
-
-		.pdf-relative-link-path {
-			font-size: 80%;
-			color: #444;
-		}
-
-		h1,
-		h2,
-		h3 {
-			letter-spacing: -0.01em;
-			line-height: 1.2;
-			font-weight: 600;
-			margin-bottom: 0;
-		}
-
-		.page-title {
-			font-size: 2.5rem;
-			font-weight: 700;
-			margin-top: 0;
-			margin-bottom: 0.75em;
-		}
-
-		h1 {
-			font-size: 1.875rem;
-			margin-top: 1.875rem;
-		}
-
-		h2 {
-			font-size: 1.5rem;
-			margin-top: 1.5rem;
-		}
-
-		h3 {
-			font-size: 1.25rem;
-			margin-top: 1.25rem;
-		}
-
-		.source {
-			border: 1px solid #ddd;
-			border-radius: 3px;
-			padding: 1.5em;
-			word-break: break-all;
-		}
-
-		.callout {
-			border-radius: 10px;
-			padding: 1rem;
-		}
-
-		figure {
-			margin: 1.25em 0;
-			page-break-inside: avoid;
-		}
-
-		figcaption {
-			opacity: 0.5;
-			font-size: 85%;
-			margin-top: 0.5em;
-		}
-
-		mark {
-			background-color: transparent;
-		}
-
-		.indented {
-			padding-left: 1.5em;
-		}
-
-		hr {
-			background: transparent;
-			display: block;
-			width: 100%;
-			height: 1px;
-			visibility: visible;
-			border: none;
-			border-bottom: 1px solid rgba(55, 53, 47, 0.09);
-		}
-
-		img {
-			max-width: 100%;
-		}
-
-		@media only print {
-			img {
-				max-height: 100vh;
-				object-fit: contain;
-			}
-		}
-
-		@page {
-			margin: 1in;
-		}
-
-		.collection-content {
-			font-size: 0.875rem;
-		}
-
-		.collection-content td {
-			white-space: pre-wrap;
-			word-break: break-word;
-		}
-
-		.column-list {
-			display: flex;
-			justify-content: space-between;
-		}
-
-		.column {
-			padding: 0 1em;
-		}
-
-		.column:first-child {
-			padding-left: 0;
-		}
-
-		.column:last-child {
-			padding-right: 0;
-		}
-
-		.table_of_contents-item {
-			display: block;
-			font-size: 0.875rem;
-			line-height: 1.3;
-			padding: 0.125rem;
-		}
-
-		.table_of_contents-indent-1 {
-			margin-left: 1.5rem;
-		}
-
-		.table_of_contents-indent-2 {
-			margin-left: 3rem;
-		}
-
-		.table_of_contents-indent-3 {
-			margin-left: 4.5rem;
-		}
-
-		.table_of_contents-link {
-			text-decoration: none;
-			opacity: 0.7;
-			border-bottom: 1px solid rgba(55, 53, 47, 0.18);
-		}
-
-		table,
-		th,
-		td {
-			border: 1px solid rgba(55, 53, 47, 0.09);
-			border-collapse: collapse;
-		}
-
-		table {
-			border-left: none;
-			border-right: none;
-		}
-
-		th,
-		td {
-			font-weight: normal;
-			padding: 0.25em 0.5em;
-			line-height: 1.5;
-			min-height: 1.5em;
-			text-align: left;
-		}
-
-		th {
-			color: rgba(55, 53, 47, 0.6);
-		}
-
-		ol,
-		ul {
-			margin: 0;
-			margin-block-start: 0.6em;
-			margin-block-end: 0.6em;
-		}
-
-		li>ol:first-child,
-		li>ul:first-child {
-			margin-block-start: 0.6em;
-		}
-
-		ul>li {
-			list-style: disc;
-		}
-
-		ul.to-do-list {
-			padding-inline-start: 0;
-		}
-
-		ul.to-do-list>li {
-			list-style: none;
-		}
-
-		.to-do-children-checked {
-			text-decoration: line-through;
-			opacity: 0.375;
-		}
-
-		ul.toggle>li {
-			list-style: none;
-		}
-
-		ul {
-			padding-inline-start: 1.7em;
-		}
-
-		ul>li {
-			padding-left: 0.1em;
-		}
-
-		ol {
-			padding-inline-start: 1.6em;
-		}
-
-		ol>li {
-			padding-left: 0.2em;
-		}
-
-		.mono ol {
-			padding-inline-start: 2em;
-		}
-
-		.mono ol>li {
-			text-indent: -0.4em;
-		}
-
-		.toggle {
-			padding-inline-start: 0em;
-			list-style-type: none;
-		}
-
-		/* Indent toggle children */
-		.toggle>li>details {
-			padding-left: 1.7em;
-		}
-
-		.toggle>li>details>summary {
-			margin-left: -1.1em;
-		}
-
-		.selected-value {
-			display: inline-block;
-			padding: 0 0.5em;
-			background: rgba(206, 205, 202, 0.5);
-			border-radius: 3px;
-			margin-right: 0.5em;
-			margin-top: 0.3em;
-			margin-bottom: 0.3em;
-			white-space: nowrap;
-		}
-
-		.collection-title {
-			display: inline-block;
-			margin-right: 1em;
-		}
-
-		.page-description {
-			margin-bottom: 2em;
-		}
-
-		.simple-table {
-			margin-top: 1em;
-			font-size: 0.875rem;
-			empty-cells: show;
-		}
-
-		.simple-table td {
-			height: 29px;
-			min-width: 120px;
-		}
-
-		.simple-table th {
-			height: 29px;
-			min-width: 120px;
-		}
-
-		.simple-table-header-color {
-			background: rgb(247, 246, 243);
-			color: black;
-		}
-
-		.simple-table-header {
-			font-weight: 500;
-		}
-
-		time {
-			opacity: 0.5;
-		}
-
-		.icon {
-			display: inline-flex;
-			align-items: center;
-			justify-content: center;
-			max-width: 1.2em;
-			max-height: 1.2em;
-			text-decoration: none;
-			margin-right: 0.5em;
-		}
-
-		img.icon {
-			border-radius: 3px;
-		}
-
-		.callout img.notion-static-icon {
-			width: 1em;
-			height: 1em;
-		}
-
-		.user-icon {
-			width: 1.5em;
-			height: 1.5em;
-			border-radius: 100%;
-			margin-right: 0.5rem;
-		}
-
-		.user-icon-inner {
-			font-size: 0.8em;
-		}
-
-		.text-icon {
-			border: 1px solid #000;
-			text-align: center;
-		}
-
-		.page-cover-image {
-			display: block;
-			object-fit: cover;
-			width: 100%;
-			max-height: 30vh;
-		}
-
-		.page-header-icon {
-			font-size: 3rem;
-			margin-bottom: 1rem;
-		}
-
-		.page-header-icon-with-cover {
-			margin-top: -0.72em;
-			margin-left: 0.07em;
-		}
-
-		.page-header-icon img {
-			border-radius: 3px;
-		}
-
-		.link-to-page {
-			margin: 1em 0;
-			padding: 0;
-			border: none;
-			font-weight: 500;
-		}
-
-		p>.user {
-			opacity: 0.5;
-		}
-
-		td>.user,
-		td>time {
-			white-space: nowrap;
-		}
-
-		input[type="checkbox"] {
-			transform: scale(1.5);
-			margin-right: 0.6em;
-			vertical-align: middle;
-		}
-
-		p {
-			margin-top: 0.5em;
-			margin-bottom: 0.5em;
-		}
-
-		.image {
-			border: none;
-			margin: 1.5em 0;
-			padding: 0;
-			border-radius: 0;
-			text-align: center;
-		}
-
-		.code,
-		code {
-			background: rgba(135, 131, 120, 0.15);
-			border-radius: 3px;
-			padding: 0.2em 0.4em;
-			border-radius: 3px;
-			font-size: 85%;
-			tab-size: 2;
-		}
-
-		code {
-			color: #eb5757;
-		}
-
-		.code {
-			padding: 1.5em 1em;
-		}
-
-		.code-wrap {
-			white-space: pre-wrap;
-			word-break: break-all;
-		}
-
-		.code>code {
-			background: none;
-			padding: 0;
-			font-size: 100%;
-			color: inherit;
-		}
-
-		blockquote {
-			font-size: 1em;
-			margin: 1em 0;
-			padding-left: 1em;
-			border-left: 3px solid rgb(55, 53, 47);
-		}
-
-		blockquote.quote-large {
-			font-size: 1.25em;
-		}
-
-		.bookmark {
-			text-decoration: none;
-			max-height: 8em;
-			padding: 0;
-			display: flex;
-			width: 100%;
-			align-items: stretch;
-		}
-
-		.bookmark-title {
-			font-size: 0.85em;
-			overflow: hidden;
-			text-overflow: ellipsis;
-			height: 1.75em;
-			white-space: nowrap;
-		}
-
-		.bookmark-text {
-			display: flex;
-			flex-direction: column;
-		}
-
-		.bookmark-info {
-			flex: 4 1 180px;
-			padding: 12px 14px 14px;
-			display: flex;
-			flex-direction: column;
-			justify-content: space-between;
-		}
-
-		.bookmark-image {
-			width: 33%;
-			flex: 1 1 180px;
-			display: block;
-			position: relative;
-			object-fit: cover;
-			border-radius: 1px;
-		}
-
-		.bookmark-description {
-			color: rgba(55, 53, 47, 0.6);
-			font-size: 0.75em;
-			overflow: hidden;
-			max-height: 4.5em;
-			word-break: break-word;
-		}
-
-		.bookmark-href {
-			font-size: 0.75em;
-			margin-top: 0.25em;
-		}
-
-		.sans {
-			font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
-		}
-
-		.code {
-			font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace;
-		}
-
-		.serif {
-			font-family: Lyon-Text, Georgia, ui-serif, serif;
-		}
-
-		.mono {
-			font-family: iawriter-mono, Nitti, Menlo, Courier, monospace;
-		}
-
-		.pdf .sans {
-			font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP';
-		}
-
-		.pdf:lang(zh-CN) .sans {
-			font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC';
-		}
-
-		.pdf:lang(zh-TW) .sans {
-			font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC';
-		}
-
-		.pdf:lang(ko-KR) .sans {
-			font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR';
-		}
-
-		.pdf .code {
-			font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP';
-		}
-
-		.pdf:lang(zh-CN) .code {
-			font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC';
-		}
-
-		.pdf:lang(zh-TW) .code {
-			font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC';
-		}
-
-		.pdf:lang(ko-KR) .code {
-			font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR';
-		}
-
-		.pdf .serif {
-			font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP';
-		}
-
-		.pdf:lang(zh-CN) .serif {
-			font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC';
-		}
-
-		.pdf:lang(zh-TW) .serif {
-			font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC';
-		}
-
-		.pdf:lang(ko-KR) .serif {
-			font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR';
-		}
-
-		.pdf .mono {
-			font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP';
-		}
-
-		.pdf:lang(zh-CN) .mono {
-			font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC';
-		}
-
-		.pdf:lang(zh-TW) .mono {
-			font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC';
-		}
-
-		.pdf:lang(ko-KR) .mono {
-			font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR';
-		}
-
-		.highlight-default {
-			color: rgba(44, 44, 43, 1);
-		}
-
-		.highlight-gray {
-			color: rgba(128, 125, 120, 1);
-			fill: rgba(128, 125, 120, 1);
-		}
-
-		.highlight-brown {
-			color: rgba(159, 118, 90, 1);
-			fill: rgba(159, 118, 90, 1);
-		}
-
-		.highlight-orange {
-			color: rgba(204, 121, 47, 1);
-			fill: rgba(204, 121, 47, 1);
-		}
-
-		.highlight-yellow {
-			color: rgba(195, 148, 67, 1);
-			fill: rgba(195, 148, 67, 1);
-		}
-
-		.highlight-teal {
-			color: rgba(80, 148, 110, 1);
-			fill: rgba(80, 148, 110, 1);
-		}
-
-		.highlight-blue {
-			color: rgba(63, 126, 190, 1);
-			fill: rgba(63, 126, 190, 1);
-		}
-
-		.highlight-purple {
-			color: rgba(154, 107, 180, 1);
-			fill: rgba(154, 107, 180, 1);
-		}
-
-		.highlight-pink {
-			color: rgba(179, 84, 136, 1);
-			fill: rgba(179, 84, 136, 1);
-		}
-
-		.highlight-red {
-			color: rgba(201, 85, 73, 1);
-			fill: rgba(201, 85, 73, 1);
-		}
-
-		.highlight-default_background {
-			color: rgba(44, 44, 43, 1);
-		}
-
-		.highlight-gray_background {
-			background: rgba(42, 28, 0, 0.07);
-		}
-
-		.highlight-brown_background {
-			background: rgba(139, 46, 0, 0.086);
-		}
-
-		.highlight-orange_background {
-			background: rgba(224, 101, 1, 0.129);
-		}
-
-		.highlight-yellow_background {
-			background: rgba(211, 168, 0, 0.137);
-		}
-
-		.highlight-teal_background {
-			background: rgba(0, 100, 45, 0.09);
-		}
-
-		.highlight-blue_background {
-			background: rgba(0, 111, 200, 0.09);
-		}
-
-		.highlight-purple_background {
-			background: rgba(102, 0, 178, 0.078);
-		}
-
-		.highlight-pink_background {
-			background: rgba(197, 0, 93, 0.086);
-		}
-
-		.highlight-red_background {
-			background: rgba(223, 22, 0, 0.094);
-		}
-
-		.block-color-default {
-			color: inherit;
-			fill: inherit;
-		}
-
-		.block-color-gray {
-			color: rgba(128, 125, 120, 1);
-			fill: rgba(128, 125, 120, 1);
-		}
-
-		.block-color-brown {
-			color: rgba(159, 118, 90, 1);
-			fill: rgba(159, 118, 90, 1);
-		}
-
-		.block-color-orange {
-			color: rgba(204, 121, 47, 1);
-			fill: rgba(204, 121, 47, 1);
-		}
-
-		.block-color-yellow {
-			color: rgba(195, 148, 67, 1);
-			fill: rgba(195, 148, 67, 1);
-		}
-
-		.block-color-teal {
-			color: rgba(80, 148, 110, 1);
-			fill: rgba(80, 148, 110, 1);
-		}
-
-		.block-color-blue {
-			color: rgba(63, 126, 190, 1);
-			fill: rgba(63, 126, 190, 1);
-		}
-
-		.block-color-purple {
-			color: rgba(154, 107, 180, 1);
-			fill: rgba(154, 107, 180, 1);
-		}
-
-		.block-color-pink {
-			color: rgba(179, 84, 136, 1);
-			fill: rgba(179, 84, 136, 1);
-		}
-
-		.block-color-red {
-			color: rgba(201, 85, 73, 1);
-			fill: rgba(201, 85, 73, 1);
-		}
-
-		.block-color-default_background {
-			color: inherit;
-			fill: inherit;
-		}
-
-		.block-color-gray_background {
-			background: rgba(240, 239, 237, 1);
-		}
-
-		.block-color-brown_background {
-			background: rgba(245, 237, 233, 1);
-		}
-
-		.block-color-orange_background {
-			background: rgba(251, 235, 222, 1);
-		}
-
-		.block-color-yellow_background {
-			background: rgba(249, 243, 220, 1);
-		}
-
-		.block-color-teal_background {
-			background: rgba(232, 241, 236, 1);
-		}
-
-		.block-color-blue_background {
-			background: rgba(232, 242, 250, 1);
-		}
-
-		.block-color-purple_background {
-			background: rgba(243, 235, 249, 1);
-		}
-
-		.block-color-pink_background {
-			background: rgba(250, 233, 241, 1);
-		}
-
-		.block-color-red_background {
-			background: rgba(252, 233, 231, 1);
-		}
-
-		.select-value-color-default {
-			background-color: rgba(42, 28, 0, 0.07);
-		}
-
-		.select-value-color-gray {
-			background-color: rgba(28, 19, 1, 0.11);
-		}
-
-		.select-value-color-brown {
-			background-color: rgba(127, 51, 0, 0.156);
-		}
-
-		.select-value-color-orange {
-			background-color: rgba(196, 88, 0, 0.203);
-		}
-
-		.select-value-color-yellow {
-			background-color: rgba(209, 156, 0, 0.282);
-		}
-
-		.select-value-color-green {
-			background-color: rgba(0, 96, 38, 0.156);
-		}
-
-		.select-value-color-blue {
-			background-color: rgba(0, 99, 174, 0.172);
-		}
-
-		.select-value-color-purple {
-			background-color: rgba(92, 0, 163, 0.141);
-		}
-
-		.select-value-color-pink {
-			background-color: rgba(183, 0, 78, 0.152);
-		}
-
-		.select-value-color-red {
-			background-color: rgba(206, 24, 0, 0.164);
-		}
-
-		.checkbox {
-			display: inline-flex;
-			vertical-align: text-bottom;
-			width: 16;
-			height: 16;
-			background-size: 16px;
-			margin-left: 2px;
-			margin-right: 5px;
-		}
-
-		.checkbox-on {
-			background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
-		}
-
-		.checkbox-off {
-			background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
-		}
-	</style>
-</head>
-
-<body>
-	<article id="2770024c-62d8-8036-a1d4-dc894c4b3c80" class="page sans">
-		<header><img class="page-cover-image"
-				src="https://www.notion.so/images/page-cover/nasa_space_shuttle_challenger.jpg"
-				style="object-position:center 8.750000000000002%" />
-			<div class="page-header-icon page-header-icon-with-cover"><span class="icon">🏗️</span></div>
-			<h1 class="page-title">Behbudiy Academy — Batch 5</h1>
-			<p class="page-description"></p>
-		</header>
-		<div class="page-body">
-			<h2 id="2770024c-62d8-80db-b9f5-f7c730e17286" class="">Why this academy exists</h2>
-			<p id="2770024c-62d8-8014-9b08-daf5ceca83de" class="">We build a reliable path for talented students to
-				master deep learning and software engineering. The environment is structured, demanding, and adaptive:
-				guidance when needed, autonomy when earned. Our community includes Olympiad finalists, medalists, and
-				ambitious builders. Alumni have moved into R&amp;D roles and internships, and current members actively
-				share opportunities and experience. To understand what the graduates think about the academic, jump to
-				the testimonials. </p>
-			<h2 id="2770024c-62d8-80d1-9c58-ef7f290df763" class="">Who this is for</h2>
-			<ul id="2770024c-62d8-800d-b203-ef8ceafbaf84" class="bulleted-list">
-				<li style="list-style-type:disc">Strong problem solvers (Olympiad/contest background is a plus, not
-					required)</li>
-			</ul>
-			<ul id="2780024c-62d8-8075-8c1f-c8fe4e19875b" class="bulleted-list">
-				<li style="list-style-type:disc">Post–high school students and early undergrads seeking rigorous,
-					practical depth</li>
-			</ul>
-			<ul id="2780024c-62d8-80cb-9ed5-e4112d411551" class="bulleted-list">
-				<li style="list-style-type:disc">Experienced software engineers who want to formalize ML with
-					first-principles math and implementation</li>
-			</ul>
-			<ul id="2780024c-62d8-803d-b0f0-d77d591a56fa" class="bulleted-list">
-				<li style="list-style-type:disc">Applied mathematicians and quantitative practitioners aiming to build,
-					train, and ship modern ML systems</li>
-			</ul>
-			<ul id="2790024c-62d8-8052-8708-c8c94d3730ae" class="bulleted-list">
-				<li style="list-style-type:disc">Educators (coding/math teachers) transitioning to teaching ML with
-					solid foundations and hands-on practice</li>
-			</ul>
-			<ul id="2780024c-62d8-8068-b992-cb18c014b95c" class="bulleted-list">
-				<li style="list-style-type:disc">Curious, driven builders—of any background—seeking foundational, modern
-					deep learning.</li>
-			</ul>
-			<h2 id="2770024c-62d8-8024-8ee5-f8e212e40916" class="">Outcomes</h2>
-			<p id="2770024c-62d8-80d3-b2e4-d7d64e14ead5" class="">By the end of the program you will:</p>
-			<ul id="2770024c-62d8-8056-a23c-edf54840d48d" class="bulleted-list">
-				<li style="list-style-type:disc">Understand the mathematical foundations used across modern ML</li>
-			</ul>
-			<ul id="2770024c-62d8-809d-b222-fb7bcabc9aeb" class="bulleted-list">
-				<li style="list-style-type:disc">Implement core algorithms and network components from scratch</li>
-			</ul>
-			<ul id="2770024c-62d8-80dc-afaa-e32064e98066" class="bulleted-list">
-				<li style="list-style-type:disc">Read papers and reproduce results</li>
-			</ul>
-			<ul id="2770024c-62d8-800f-b477-fb93d115e8c8" class="bulleted-list">
-				<li style="list-style-type:disc">Build and ship working models with clean, testable code</li>
-			</ul>
-			<h2 id="2770024c-62d8-80fa-8a0f-c5bb3b6d2b35" class="">Program structure</h2>
-			<ul id="2770024c-62d8-807c-adf7-cb3cc0fac185" class="bulleted-list">
-				<li style="list-style-type:disc"><strong>Format:</strong> Discussion-driven sessions with coding,
-					problem solving, and live implementation. Minimal lectures; maximal doing.</li>
-			</ul>
-			<ul id="2770024c-62d8-8013-9fc9-d8d8ae6269d8" class="bulleted-list">
-				<li style="list-style-type:disc"><strong>Cadence:</strong> 1–2 live sessions per week (online;
-					occasional offline meetups).</li>
-			</ul>
-			<ul id="2790024c-62d8-80a8-9d97-f223829acd11" class="bulleted-list">
-				<li style="list-style-type:disc"><strong>Sessions</strong>: ~2h per session. Students are required to
-					read chapters ahead of meetings, so we skip easy detailes and spent more time on hard concepts.
-					Usually, session will be mix of explanation, discussion, problem solving and coding. Sometimes, just
-					coding session to implement larger concepts.</li>
-			</ul>
-			<ul id="2770024c-62d8-8055-ae37-f489aa6cc3a1" class="bulleted-list">
-				<li style="list-style-type:disc"><strong>Time commitment:</strong> ~10–12 hours/week (sessions,
-					readings, assignments, project).</li>
-			</ul>
-			<ul id="2770024c-62d8-80a0-929c-c3e8c27c9abe" class="bulleted-list">
-				<li style="list-style-type:disc"><strong>Language:</strong> English</li>
-			</ul>
-			<hr id="2770024c-62d8-808b-9d2e-fbb06a51f96a" />
-			<h2 id="2770024c-62d8-8007-a5eb-efcd6375977b" class="">Part I — Fundamental Mathematics for Machine Learning
-				(4 months)</h2>
-			<p id="2770024c-62d8-803c-8421-cba82f967238" class=""><strong>Primary text:</strong> <a
-					href="https://mml-book.com/">https://mml-book.com/</a>. We learn by solving and coding.</p>
-			<ol type="1" id="2770024c-62d8-8027-bf04-ca90ee4cb9d4" class="numbered-list" start="1">
-				<li>Linear Algebra</li>
-			</ol>
-			<ol type="1" id="2770024c-62d8-80ee-8d53-e86e10fcd35b" class="numbered-list" start="2">
-				<li>Analytic Geometry</li>
-			</ol>
-			<ol type="1" id="2770024c-62d8-8075-9c9c-d8212438a866" class="numbered-list" start="3">
-				<li>Matrix Decompositions</li>
-			</ol>
-			<ol type="1" id="2770024c-62d8-8071-b01d-e43a01501394" class="numbered-list" start="4">
-				<li>Vector Calculus</li>
-			</ol>
-			<ol type="1" id="2770024c-62d8-80b7-aefd-caf06e1d197f" class="numbered-list" start="5">
-				<li>Probability and Distributions</li>
-			</ol>
-			<ol type="1" id="2770024c-62d8-8083-a541-d14c10f56693" class="numbered-list" start="6">
-				<li>Continuous Optimization</li>
-			</ol>
-			<ol type="1" id="2770024c-62d8-80ba-b003-d038bf875763" class="numbered-list" start="7">
-				<li>When Models Meet Data</li>
-			</ol>
-			<ol type="1" id="2770024c-62d8-8098-bf84-fd3208761833" class="numbered-list" start="8">
-				<li>Linear Regression</li>
-			</ol>
-			<ol type="1" id="2770024c-62d8-8092-8347-f777880f936e" class="numbered-list" start="9">
-				<li>PCA and Dimensionality Reduction</li>
-			</ol>
-			<ol type="1" id="2770024c-62d8-805d-992e-d518048afb94" class="numbered-list" start="10">
-				<li>Gaussian Mixture Models (Density Estimation)</li>
-			</ol>
-			<ol type="1" id="2770024c-62d8-80e2-a9e5-f54ee463bee6" class="numbered-list" start="11">
-				<li>Support Vector Machines (Classification)</li>
-			</ol>
-			<h2 id="2770024c-62d8-80b3-b58b-c0b1b99d0476" class="">Part II — Modern Deep Learning (5 months)</h2>
-			<p id="2770024c-62d8-80c8-8f51-ef8e54348d78" class=""><strong>Primary text:</strong> <a
-					href="https://udlbook.github.io/udlbook/">https://udlbook.github.io/udlbook/</a>. Theory, training
-				practice, and implementation.</p>
-			<ol type="1" id="2770024c-62d8-80ac-af5f-f9db77a530d8" class="numbered-list" start="1">
-				<li>Deep Neural Networks</li>
-			</ol>
-			<ol type="1" id="2770024c-62d8-802b-b078-d37bb4fb8f53" class="numbered-list" start="2">
-				<li>Loss Functions</li>
-			</ol>
-			<ol type="1" id="2770024c-62d8-8040-b86d-ea3cff93b64a" class="numbered-list" start="3">
-				<li>Fitting Models</li>
-			</ol>
-			<ol type="1" id="2770024c-62d8-8056-86cd-ca5553dfa71c" class="numbered-list" start="4">
-				<li>Gradients and Initialization</li>
-			</ol>
-			<ol type="1" id="2770024c-62d8-80d3-b169-dab48218a335" class="numbered-list" start="5">
-				<li>Regularization</li>
-			</ol>
-			<ol type="1" id="2770024c-62d8-809a-8f37-f485d53cf538" class="numbered-list" start="6">
-				<li>Convolutional Neural Networks</li>
-			</ol>
-			<ol type="1" id="2770024c-62d8-80b3-b0fc-cd9c361e4048" class="numbered-list" start="7">
-				<li>Residual Networks</li>
-			</ol>
-			<ol type="1" id="2770024c-62d8-80fe-b65d-c01fe1fb4971" class="numbered-list" start="8">
-				<li>Transformers</li>
-			</ol>
-			<ol type="1" id="2770024c-62d8-808d-b339-c7c63ea27c3a" class="numbered-list" start="9">
-				<li>Graph Neural Networks</li>
-			</ol>
-			<ol type="1" id="2770024c-62d8-8005-b7e1-e00224fec2e8" class="numbered-list" start="10">
-				<li>Generative Adversarial Networks</li>
-			</ol>
-			<ol type="1" id="2770024c-62d8-80dc-aae0-eea7395c1b86" class="numbered-list" start="11">
-				<li>Variational Autoencoders</li>
-			</ol>
-			<ol type="1" id="2770024c-62d8-8062-b827-e9b7731d4b98" class="numbered-list" start="12">
-				<li>Diffusion Models</li>
-			</ol>
-			<hr id="2770024c-62d8-80e7-a0a0-c757e6288ead" />
-			<h2 id="2770024c-62d8-80bd-9a72-dc3e40b794a5" class="">Teaching team</h2>
-			<ul id="2770024c-62d8-8005-b029-cbab8bcee44c" class="bulleted-list">
-				<li style="list-style-type:disc"><strong>Lead instructor:</strong> Azimjon Mehmonali o’g’li</li>
-			</ul>
-			<ul id="2770024c-62d8-80b9-849d-ff4db378da95" class="bulleted-list">
-				<li style="list-style-type:disc"><strong>Instructional support:</strong> Khurshid Juraev and Behbudiy
-					alumni</li>
-			</ul>
-			<p id="2770024c-62d8-8014-8927-c5e5935083e8" class="">Contact: <strong><a
-						href="mailto:azimjon@behbudiy.com">azimjon@behbudiy.com</a></strong> · Telegram:
-				<strong>@azimjon235</strong></p>
-			<hr id="2770024c-62d8-80af-be98-d23cbf99629f" />
-			<h2 id="2770024c-62d8-8055-9b3b-eb025e1e4590" class="">Admissions, tuition, and scholarships</h2>
-			<ul id="2770024c-62d8-80e4-b454-f940b9c94b5f" class="bulleted-list">
-				<li style="list-style-type:disc"><strong>Cohort size:</strong> ~15 learners</li>
-			</ul>
-			<ul id="2770024c-62d8-80e2-928b-e1aad5d9c99a" class="bulleted-list">
-				<li style="list-style-type:disc"><strong>Tuition:</strong> $150/month</li>
-			</ul>
-			<ul id="2770024c-62d8-80cc-9ece-c72aeadf07f5" class="bulleted-list">
-				<li style="list-style-type:disc"><strong>Financial aid:</strong> Need-based full and partial
-					scholarships are available</li>
-			</ul>
-			<ul id="2770024c-62d8-80f9-a754-ea1861817274" class="bulleted-list">
-				<li style="list-style-type:disc"><strong>Eligibility:</strong> merit-first, need-aware</li>
-			</ul>
-			<ul id="2770024c-62d8-8007-9083-d415850c73c3" class="bulleted-list">
-				<li style="list-style-type:disc"><strong>Selection:</strong> short application → challenge task (if too
-					many applications)→ interview</li>
-			</ul>
-			<p id="2770024c-62d8-8066-8243-f7bb2c48668c" class=""><strong>Application:</strong></p>
-			<ul id="2770024c-62d8-8036-bca2-d337f19e9166" class="bulleted-list">
-				<li style="list-style-type:disc"><strong>Apply now:</strong> <a
-						href="https://docs.google.com/forms/d/e/1FAIpQLSeU848xnymgXiQDfWkhLxGk2uBH_J1Pg5EmqrtnR-vt1q0BqQ/viewform?usp=header">link</a>
-				</li>
-			</ul>
-			<ul id="2770024c-62d8-807c-b1b4-fefa51d3ff39" class="bulleted-list">
-				<li style="list-style-type:disc"><strong>Application deadline: </strong>07.10.2025</li>
-			</ul>
-			<hr id="2770024c-62d8-8014-9399-fbe8b6609dac" />
-			<h2 id="2770024c-62d8-80eb-8f46-ceb0665206c2" class="">Policies</h2>
-			<ul id="2770024c-62d8-8051-90db-d245caa5dbe1" class="bulleted-list">
-				<li style="list-style-type:disc"><strong>Workload &amp; integrity:</strong> consistent weekly output
-					required; independent work, collaboration allowed per assignment rules.</li>
-			</ul>
-			<ul id="2770024c-62d8-80e5-8a82-db1e5442c978" class="bulleted-list">
-				<li style="list-style-type:disc"><strong>Attendance:</strong> live sessions are
-					<strong>mandatory</strong>; recordings provided for emergencies.</li>
-			</ul>
-			<ul id="2790024c-62d8-805c-88d5-dbf776cdb19e" class="bulleted-list">
-				<li style="list-style-type:disc"><strong>Payment:</strong> Monthly, prepaid. <strong>No
-						refunds.</strong> Cancellation applies to the <strong>next</strong> billing cycle. Non-payment
-					may forfeit your seat.</li>
-			</ul>
-			<hr id="2770024c-62d8-80b0-aed4-cae82364a786" />
-			<h2 id="27a0024c-62d8-80b3-8821-e703d113061f" class="">Comments from alumni</h2>
-			<blockquote id="27a0024c-62d8-803a-94e8-fc2254416663" class="">Timing is good. Difficulty was a bit hard for
-				me. Efficiency is also good. And networking from this academia gives me access to some brilliant
-				developers. — <strong>Mironshoh, Research Engineer at tilmoch.ai</strong></blockquote>
-			<blockquote id="27a0024c-62d8-80e7-923a-d4cb38aa921d" class="">i got all fundamental knowledge of Machine
-				learning and deep learning. So now i am more confident what i have to do for the next level, MML and
-				deep learning put me on a long run, so i will continue , for Software side i did not get more from book
-				called 7L7W. Software contruction was hard. — <strong>Diyorbek Majidov, Data Analyst at BRB
-					Bank</strong></blockquote>
-			<blockquote id="27a0024c-62d8-807a-a7e6-e9ec601eba25" class="">Behbudiy taught me to immerse myself in
-				demanding subjects without fear of the terrain. I came to see each lesson as a climb—always upward,
-				never downhill—bringing me closer to the summit I sought. For a reason, Behbudiy is a mentorship
-				program. It offers carefully designed steps for students’ growth. It lifts those who stumble, provides
-				clarity where confusion lingers, and encourages those with incentives. — <strong>Shohruh, Yildiz
-					Technical University, Mathematical Engineering</strong></blockquote>
-			<blockquote id="27a0024c-62d8-807b-a3b2-d1fbda3e65ff" class="">Finding appropriate time working for everyone
-				was good. The main difficulty was - it was new field that I am interesting to learn, but I think course
-				could be more helpful for already working in the sphere engineers than newbies (me), exception drdilyor
-				:). Efficiency of learning is discussed in the next question. But being in the atmosphere was a lot to
-				me, not being proper student was distracting this atmosphere though. After hearing next batch drdilyor
-				is joining, I realized I can&#x27;t teach in this batch at this level. — <strong>Azamat, New Uzbekistan
-					University</strong></blockquote>
-			<blockquote id="27a0024c-62d8-803b-a98d-c53e09c39a02" class="">80/100. The 20 depends on the person. The
-				learning materials were extensive and diverse to challenge the ordinary mind and push to learn new
-				concepts. The student should be hard-working and really really interested in the topics. Math is
-				fundamental part so I would recommend newcomers to be able to understand the math enough or B2+. I would
-				remove 7l7w book from the course, ok we may use such languages when it is required in our works but till
-				that time or along the process we will be able to learn and can implement them. It is in vain to learn
-				all superficially I guess. I need to mention that the friends in the academy are clever and smart guys,
-				at least they have willingness to learn something new and solve some problems that nobody is interested
-				or random. I like the squad) — <strong>Marjona (Erasmus winner)</strong></blockquote>
-			<blockquote id="27a0024c-62d8-80e3-952d-fb52cf8b51aa" class="">It seemed really hard in the beginning, there
-				were a lot of new things for me, to be honest. While I was at university last year in spring, I didn’t
-				give much attention to it. But in summer I really tried hard, the things that I was learning seemed
-				abstract, just couldn’t imagine what I was learning. I thought I was reading more than others, but the
-				result wasn’t efficient. After having some probability, statistics classes at university, I realized
-				that I indeed learned some stuff there and my mind started to realize. — <strong>Robiya (British Women
-					in STEM winner)</strong></blockquote>
-			<blockquote id="27a0024c-62d8-803e-ba8a-ff5eb5ceefba" class="">Experience was great, we had a lot of useful
-				and fun lessons and meetings, both online and offline, met a lot of interesting and like-minded people.
-				Learnt a lot from them. I am also grateful to my mentors, they did a great job. It was a bit difficult
-				with too much math parts.</blockquote>
-			<blockquote id="27a0024c-62d8-8015-b662-e524f736dea0" class="">My overall experience is good. Timing is also
-				good. difficulty is manageable, I mean, if student spend some hours with focus, he/she could understand
-				the content. I made/met good friends, it is also one of the most important points/chances the academy
-				gave.</blockquote>
-			<hr id="27a0024c-62d8-802e-8709-f80b4457fdde" />
-			<p id="2770024c-62d8-8069-b738-ea143f630738" class=""><em>Behbudiy Academy is a community of builders. Come
-					ready to think, code, and ship.</em></p>
-			<p id="2790024c-62d8-8086-967d-cdeee5b2c187" class="">
-			</p>
-		</div>
-	</article><span class="sans" style="font-size:14px;padding-top:2em"></span>
-</body>
-
-</html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Behbudiy Academy — Batch 5</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(128, 125, 120, 1);
+	fill: rgba(128, 125, 120, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(204, 121, 47, 1);
+	fill: rgba(204, 121, 47, 1);
+}
+.highlight-yellow {
+	color: rgba(195, 148, 67, 1);
+	fill: rgba(195, 148, 67, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(63, 126, 190, 1);
+	fill: rgba(63, 126, 190, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(179, 84, 136, 1);
+	fill: rgba(179, 84, 136, 1);
+}
+.highlight-red {
+	color: rgba(201, 85, 73, 1);
+	fill: rgba(201, 85, 73, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 111, 200, 0.09);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(128, 125, 120, 1);
+	fill: rgba(128, 125, 120, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(204, 121, 47, 1);
+	fill: rgba(204, 121, 47, 1);
+}
+.block-color-yellow {
+	color: rgba(195, 148, 67, 1);
+	fill: rgba(195, 148, 67, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(63, 126, 190, 1);
+	fill: rgba(63, 126, 190, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(179, 84, 136, 1);
+	fill: rgba(179, 84, 136, 1);
+}
+.block-color-red {
+	color: rgba(201, 85, 73, 1);
+	fill: rgba(201, 85, 73, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(232, 242, 250, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 99, 174, 0.172); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="2770024c-62d8-8036-a1d4-dc894c4b3c80" class="page sans"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/nasa_space_shuttle_challenger.jpg" style="object-position:center 8.750000000000002%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🏗️</span></div><h1 class="page-title">Behbudiy Academy — Batch 5</h1><p class="page-description"></p></header><div class="page-body"><h2 id="2770024c-62d8-80db-b9f5-f7c730e17286" class="">Why this academy exists</h2><p id="2770024c-62d8-8014-9b08-daf5ceca83de" class="">We build a reliable path for talented students to master deep learning and software engineering. The environment is structured, demanding, and adaptive: guidance when needed, autonomy when earned. Our community includes Olympiad finalists, medalists, and ambitious builders. Alumni have moved into R&amp;D roles and internships, and current members actively share opportunities and experience. To understand what the graduates think about the academic, jump to the testimonials. </p><h2 id="2770024c-62d8-80d1-9c58-ef7f290df763" class="">Who this is for</h2><ul id="2770024c-62d8-800d-b203-ef8ceafbaf84" class="bulleted-list"><li style="list-style-type:disc">Strong problem solvers (Olympiad/contest background is a plus, not required)</li></ul><ul id="2780024c-62d8-8075-8c1f-c8fe4e19875b" class="bulleted-list"><li style="list-style-type:disc">Post–high school students and early undergrads seeking rigorous, practical depth</li></ul><ul id="2780024c-62d8-80cb-9ed5-e4112d411551" class="bulleted-list"><li style="list-style-type:disc">Experienced software engineers who want to formalize ML with first-principles math and implementation</li></ul><ul id="2780024c-62d8-803d-b0f0-d77d591a56fa" class="bulleted-list"><li style="list-style-type:disc">Applied mathematicians and quantitative practitioners aiming to build, train, and ship modern ML systems</li></ul><ul id="2790024c-62d8-8052-8708-c8c94d3730ae" class="bulleted-list"><li style="list-style-type:disc">Educators (coding/math teachers) transitioning to teaching ML with solid foundations and hands-on practice</li></ul><ul id="2780024c-62d8-8068-b992-cb18c014b95c" class="bulleted-list"><li style="list-style-type:disc">Curious, driven builders—of any background—seeking foundational, modern deep learning.</li></ul><h2 id="2770024c-62d8-8024-8ee5-f8e212e40916" class="">Outcomes</h2><p id="2770024c-62d8-80d3-b2e4-d7d64e14ead5" class="">By the end of the program you will:</p><ul id="2770024c-62d8-8056-a23c-edf54840d48d" class="bulleted-list"><li style="list-style-type:disc">Understand the mathematical foundations used across modern ML</li></ul><ul id="2770024c-62d8-809d-b222-fb7bcabc9aeb" class="bulleted-list"><li style="list-style-type:disc">Implement core algorithms and network components from scratch</li></ul><ul id="2770024c-62d8-80dc-afaa-e32064e98066" class="bulleted-list"><li style="list-style-type:disc">Read papers and reproduce results</li></ul><ul id="2770024c-62d8-800f-b477-fb93d115e8c8" class="bulleted-list"><li style="list-style-type:disc">Build and ship working models with clean, testable code</li></ul><h2 id="2770024c-62d8-80fa-8a0f-c5bb3b6d2b35" class="">Program structure</h2><ul id="2770024c-62d8-807c-adf7-cb3cc0fac185" class="bulleted-list"><li style="list-style-type:disc"><strong>Format:</strong> Discussion-driven sessions with coding, problem solving, and live implementation. Minimal lectures; maximal doing.</li></ul><ul id="2770024c-62d8-8013-9fc9-d8d8ae6269d8" class="bulleted-list"><li style="list-style-type:disc"><strong>Cadence:</strong> 1–2 live sessions per week (online; occasional offline meetups).</li></ul><ul id="2790024c-62d8-80a8-9d97-f223829acd11" class="bulleted-list"><li style="list-style-type:disc"><strong>Sessions</strong>: ~2h per session. Students are required to read chapters ahead of meetings, so we skip easy detailes and spent more time on hard concepts. Usually, session will be mix of explanation, discussion, problem solving and coding. Sometimes, just coding session to implement larger concepts.</li></ul><ul id="2770024c-62d8-8055-ae37-f489aa6cc3a1" class="bulleted-list"><li style="list-style-type:disc"><strong>Time commitment:</strong> ~10–12 hours/week (sessions, readings, assignments, project).</li></ul><ul id="2770024c-62d8-80a0-929c-c3e8c27c9abe" class="bulleted-list"><li style="list-style-type:disc"><strong>Language:</strong> English</li></ul><hr id="2770024c-62d8-808b-9d2e-fbb06a51f96a"/><h2 id="2770024c-62d8-8007-a5eb-efcd6375977b" class="">Part I — Fundamental Mathematics for Machine Learning (4 months)</h2><p id="2770024c-62d8-803c-8421-cba82f967238" class=""><strong>Primary text:</strong> <a href="https://mml-book.com/">https://mml-book.com/</a>. We learn by solving and coding.</p><ol type="1" id="2770024c-62d8-8027-bf04-ca90ee4cb9d4" class="numbered-list" start="1"><li>Linear Algebra</li></ol><ol type="1" id="2770024c-62d8-80ee-8d53-e86e10fcd35b" class="numbered-list" start="2"><li>Analytic Geometry</li></ol><ol type="1" id="2770024c-62d8-8075-9c9c-d8212438a866" class="numbered-list" start="3"><li>Matrix Decompositions</li></ol><ol type="1" id="2770024c-62d8-8071-b01d-e43a01501394" class="numbered-list" start="4"><li>Vector Calculus</li></ol><ol type="1" id="2770024c-62d8-80b7-aefd-caf06e1d197f" class="numbered-list" start="5"><li>Probability and Distributions</li></ol><ol type="1" id="2770024c-62d8-8083-a541-d14c10f56693" class="numbered-list" start="6"><li>Continuous Optimization</li></ol><ol type="1" id="2770024c-62d8-80ba-b003-d038bf875763" class="numbered-list" start="7"><li>When Models Meet Data</li></ol><ol type="1" id="2770024c-62d8-8098-bf84-fd3208761833" class="numbered-list" start="8"><li>Linear Regression</li></ol><ol type="1" id="2770024c-62d8-8092-8347-f777880f936e" class="numbered-list" start="9"><li>PCA and Dimensionality Reduction</li></ol><ol type="1" id="2770024c-62d8-805d-992e-d518048afb94" class="numbered-list" start="10"><li>Gaussian Mixture Models (Density Estimation)</li></ol><ol type="1" id="2770024c-62d8-80e2-a9e5-f54ee463bee6" class="numbered-list" start="11"><li>Support Vector Machines (Classification)</li></ol><h2 id="2770024c-62d8-80b3-b58b-c0b1b99d0476" class="">Part II — Modern Deep Learning (5 months)</h2><p id="2770024c-62d8-80c8-8f51-ef8e54348d78" class=""><strong>Primary text:</strong> <a href="https://udlbook.github.io/udlbook/">https://udlbook.github.io/udlbook/</a>. Theory, training practice, and implementation.</p><ol type="1" id="2770024c-62d8-80ac-af5f-f9db77a530d8" class="numbered-list" start="1"><li>Deep Neural Networks</li></ol><ol type="1" id="2770024c-62d8-802b-b078-d37bb4fb8f53" class="numbered-list" start="2"><li>Loss Functions</li></ol><ol type="1" id="2770024c-62d8-8040-b86d-ea3cff93b64a" class="numbered-list" start="3"><li>Fitting Models</li></ol><ol type="1" id="2770024c-62d8-8056-86cd-ca5553dfa71c" class="numbered-list" start="4"><li>Gradients and Initialization</li></ol><ol type="1" id="2770024c-62d8-80d3-b169-dab48218a335" class="numbered-list" start="5"><li>Regularization</li></ol><ol type="1" id="2770024c-62d8-809a-8f37-f485d53cf538" class="numbered-list" start="6"><li>Convolutional Neural Networks</li></ol><ol type="1" id="2770024c-62d8-80b3-b0fc-cd9c361e4048" class="numbered-list" start="7"><li>Residual Networks</li></ol><ol type="1" id="2770024c-62d8-80fe-b65d-c01fe1fb4971" class="numbered-list" start="8"><li>Transformers</li></ol><ol type="1" id="2770024c-62d8-808d-b339-c7c63ea27c3a" class="numbered-list" start="9"><li>Graph Neural Networks</li></ol><ol type="1" id="2770024c-62d8-8005-b7e1-e00224fec2e8" class="numbered-list" start="10"><li>Generative Adversarial Networks</li></ol><ol type="1" id="2770024c-62d8-80dc-aae0-eea7395c1b86" class="numbered-list" start="11"><li>Variational Autoencoders</li></ol><ol type="1" id="2770024c-62d8-8062-b827-e9b7731d4b98" class="numbered-list" start="12"><li>Diffusion Models</li></ol><hr id="2770024c-62d8-80e7-a0a0-c757e6288ead"/><h2 id="2770024c-62d8-80bd-9a72-dc3e40b794a5" class="">Teaching team</h2><ul id="2770024c-62d8-8005-b029-cbab8bcee44c" class="bulleted-list"><li style="list-style-type:disc"><strong>Lead instructor:</strong> Azimjon Mehmonali o’g’li</li></ul><ul id="2770024c-62d8-80b9-849d-ff4db378da95" class="bulleted-list"><li style="list-style-type:disc"><strong>Instructional support:</strong> Khurshid Juraev and Behbudiy alumni</li></ul><p id="2770024c-62d8-8014-8927-c5e5935083e8" class="">Contact: <strong><a href="mailto:azimjon@behbudiy.com">azimjon@behbudiy.com</a></strong> · Telegram: <strong>@azimjon235</strong></p><hr id="2770024c-62d8-80af-be98-d23cbf99629f"/><h2 id="2770024c-62d8-8055-9b3b-eb025e1e4590" class="">Admissions, tuition, and scholarships</h2><ul id="2770024c-62d8-80e4-b454-f940b9c94b5f" class="bulleted-list"><li style="list-style-type:disc"><strong>Cohort size:</strong> ~15 learners</li></ul><ul id="2770024c-62d8-80e2-928b-e1aad5d9c99a" class="bulleted-list"><li style="list-style-type:disc"><strong>Tuition:</strong> $150/month</li></ul><ul id="2770024c-62d8-80cc-9ece-c72aeadf07f5" class="bulleted-list"><li style="list-style-type:disc"><strong>Financial aid:</strong> Need-based full and partial scholarships are available</li></ul><ul id="2770024c-62d8-80f9-a754-ea1861817274" class="bulleted-list"><li style="list-style-type:disc"><strong>Eligibility:</strong> merit-first, need-aware</li></ul><ul id="2770024c-62d8-8007-9083-d415850c73c3" class="bulleted-list"><li style="list-style-type:disc"><strong>Selection:</strong> short application → challenge task (if too many applications)→ interview</li></ul><p id="2770024c-62d8-8066-8243-f7bb2c48668c" class=""><strong>Application:</strong></p><ul id="2770024c-62d8-8036-bca2-d337f19e9166" class="bulleted-list"><li style="list-style-type:disc"><strong>Apply now:</strong> <a href="https://docs.google.com/forms/d/e/1FAIpQLSeU848xnymgXiQDfWkhLxGk2uBH_J1Pg5EmqrtnR-vt1q0BqQ/viewform?usp=header">link</a></li></ul><ul id="2770024c-62d8-807c-b1b4-fefa51d3ff39" class="bulleted-list"><li style="list-style-type:disc"><strong>Application deadline: </strong>07.10.2025</li></ul><hr id="2770024c-62d8-8014-9399-fbe8b6609dac"/><h2 id="2770024c-62d8-80eb-8f46-ceb0665206c2" class="">Policies</h2><ul id="2770024c-62d8-8051-90db-d245caa5dbe1" class="bulleted-list"><li style="list-style-type:disc"><strong>Workload &amp; integrity:</strong> consistent weekly output required; independent work, collaboration allowed per assignment rules.</li></ul><ul id="2770024c-62d8-80e5-8a82-db1e5442c978" class="bulleted-list"><li style="list-style-type:disc"><strong>Attendance:</strong> live sessions are <strong>mandatory</strong>; recordings provided for emergencies.</li></ul><ul id="2790024c-62d8-805c-88d5-dbf776cdb19e" class="bulleted-list"><li style="list-style-type:disc"><strong>Payment:</strong> Monthly, prepaid. <strong>No refunds.</strong> Cancellation applies to the <strong>next</strong> billing cycle. Non-payment may forfeit your seat.</li></ul><hr id="2770024c-62d8-80b0-aed4-cae82364a786"/><h2 id="27a0024c-62d8-80b3-8821-e703d113061f" class="">Comments from alumni</h2><blockquote id="27a0024c-62d8-803a-94e8-fc2254416663" class="">Timing is good. Difficulty was a bit hard for me. Efficiency is also good. And networking from this academia gives me access to some brilliant developers. — <strong>Mironshoh, Research Engineer at tilmoch.ai</strong></blockquote><blockquote id="27a0024c-62d8-80e7-923a-d4cb38aa921d" class="">i got all fundamental knowledge of Machine learning and deep learning. So now i am more confident what i have to do for the next level, MML and deep learning put me on a long run, so i will continue , for Software side i did not get more from book called 7L7W. Software contruction was hard. — <strong>Diyorbek Majidov, Data Analyst at BRB Bank</strong></blockquote><blockquote id="27a0024c-62d8-807a-a7e6-e9ec601eba25" class="">Behbudiy taught me to immerse myself in demanding subjects without fear of the terrain. I came to see each lesson as a climb—always upward, never downhill—bringing me closer to the summit I sought. For a reason, Behbudiy is a mentorship program. It offers carefully designed steps for students’ growth. It lifts those who stumble, provides clarity where confusion lingers, and encourages those with incentives. — <strong>Shohruh, Yildiz Technical University, Mathematical Engineering</strong></blockquote><blockquote id="27a0024c-62d8-807b-a3b2-d1fbda3e65ff" class="">Finding appropriate time working for everyone was good. The main difficulty was - it was new field that I am interesting to learn, but I think course could be more helpful for already working in the sphere engineers than newbies (me), exception drdilyor :). Efficiency of learning is discussed in the next question. But being in the atmosphere was a lot to me, not being proper student was distracting this atmosphere though. After hearing next batch drdilyor is joining, I realized I can&#x27;t teach in this batch at this level. — <strong>Azamat, New Uzbekistan University</strong></blockquote><blockquote id="27a0024c-62d8-803b-a98d-c53e09c39a02" class="">80/100. The 20 depends on the person. The learning materials were extensive and diverse to challenge the ordinary mind and push to learn new concepts. The student should be hard-working and really really interested in the topics. Math is fundamental part so I would recommend newcomers to be able to understand the math enough or B2+. I would remove 7l7w book from the course, ok we may use such languages when it is required in our works but till that time or along the process we will be able to learn and can implement them. It is in vain to learn all superficially I guess. I need to mention that the friends in the academy are clever and smart guys, at least they have willingness to learn something new and solve some problems that nobody is interested or random. I like the squad) — <strong>Marjona (Erasmus winner)</strong></blockquote><blockquote id="27a0024c-62d8-80e3-952d-fb52cf8b51aa" class="">It seemed really hard in the beginning, there were a lot of new things for me, to be honest. While I was at university last year in spring, I didn’t give much attention to it. But in summer I really tried hard, the things that I was learning seemed abstract, just couldn’t imagine what I was learning. I thought I was reading more than others, but the result wasn’t efficient. After having some probability, statistics classes at university, I realized that I indeed learned some stuff there and my mind started to realize. — <strong>Robiya (British Women in STEM winner)</strong></blockquote><blockquote id="27a0024c-62d8-803e-ba8a-ff5eb5ceefba" class="">Experience was great, we had a lot of useful and fun lessons and meetings, both online and offline, met a lot of interesting and like-minded people. Learnt a lot from them. I am also grateful to my mentors, they did a great job. It was a bit difficult with too much math parts.</blockquote><blockquote id="27a0024c-62d8-8015-b662-e524f736dea0" class="">My overall experience is good. Timing is also good. difficulty is manageable, I mean, if student spend some hours with focus, he/she could understand the content. I made/met good friends, it is also one of the most important points/chances the academy gave.</blockquote><hr id="27a0024c-62d8-802e-8709-f80b4457fdde"/><p id="2770024c-62d8-8069-b738-ea143f630738" class=""><em>Behbudiy Academy is a community of builders. Come ready to think, code, and ship.</em></p><p id="2790024c-62d8-8086-967d-cdeee5b2c187" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
